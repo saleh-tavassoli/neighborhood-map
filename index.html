@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Udacity Neighborhood-Map Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="hide" data-bind="css: { hide: mapLoadFail }">
+        <div id="nav" class="hide" data-bind="css: { hide: hideNav }">
+            <input id="filter" class="filter" type="text" data-bind="textInput: searchTerm" placeholder="Search Your Favorite Location...">
+            <ul>
+                <!-- ko foreach: filteredLocations -->
+                <li data-bind="text: title, css: { active: active }, click: selectLocation"></li>
+                <!-- /ko -->
+                <li data-bind="visible: filteredLocations().length == 0" style="cursor:auto;">No Results Could be Found</li>
+            </ul>
+            <img data-bind="attr:{src : streetviewUrl}">
+        </div>
+        <div class="map-container">
+            <div id="map"></div>
+            <button class="toggle-nav" data-bind="click: toggleNav">Menu</button>
+        </div>
+    </div>
+    <script type='text/javascript' src='dependency/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='dependency/knockout/knockout.js'></script>
+    <script type='text/javascript' src='js/main.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDl2LfjyfcqYje-rW44cmTnos-GqXTlA4I&callback=initialize" async defer onerror="mapsApiErrorHandler();"></script>
+</body>
+</html>
